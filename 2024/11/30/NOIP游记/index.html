@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/chitose.github.io/css/layout.css">
 
 		
-		<title> 高斯消元 -  BHX&#39;s Blog</title>
+		<title> NOIP游记 -  BHX&#39;s Blog</title>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
 		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
 		
@@ -333,77 +333,39 @@
 		
 		<div class="kira-post-cover">
 			<img
-				data-src="/chitose.github.io/images/gauss.jpg"
+				data-src="/chitose.github.io/images/onehui.png"
 				data-sizes="auto"
-				alt="高斯消元"
+				alt="NOIP游记"
 				class="lazyload kira-post-cover-image disabled-kira-image"
 			/>
-			<h1>高斯消元</h1>
+			<h1>NOIP游记</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2025年02月27日</a>
-			<a><i class="kirafont icon-edit-fill"></i>524 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2024年11月30日</a>
+			<a><i class="kirafont icon-edit-fill"></i>184 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<html><head></head><body><h2><span id="%E6%B3%951-%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83">法1 高斯消元</span></h2>
-<p>初始形式：</p>
-<p><span class="math display">\[
-\begin{cases}
-x_{1,1} \quad x_{1,2} \quad \dots\quad x_{1,n} \ |\  x_{1,n+1}\\
-x_{2,1} \quad x_{2,2} \quad \dots\quad x_{2,n} \ |\  x_{2,n+1}\\
-\dots \\
-x_{n,1} \quad x_{n,2} \quad \dots\quad x_{n,n} \ |\  x_{n,n+1}\\
-\end{cases}
-\]</span></p>
-<p>结束形式：</p>
-<p><span class="math display">\[
-\begin{cases}
-x_{1,1}^{'} \quad x_{1,2}^{'} \quad \dots\quad x_{1,n}^{'} \
-|\  x_{1,n+1}^{'}\\
-0 \ \ \ \ \quad x_{2,2}^{'} \quad \dots\quad x_{2,n}^{'} \
-|\  x_{2,n+1}^{'}\\
-\dots \\
-0 \ \ \ \  \quad 0 \ \ \ \  \quad \dots\quad x_{n,n}^{'}   \
-|\  x_{n,n+1}^{'}\\
-\end{cases}
-\]</span></p>
-<p>即化为上三角形式</p>
-<p>时间复杂度：<span class="math inline">\(O(n^3)\)</span></p>
-<p>由于最多也只能用double型存储，所以必然会有精度误差。但如果我们每次都选用最大系数的来消掉其他系数，就可以最大程度地来减小误差。</p>
-<p>对于无解的判断：某一行前 <span class="math inline">\(n\)</span>
-个数均为 0，最后的结果却不为 <span class="math inline">\(0\)</span>。<br>
-对于无数解的判断：某一行 <span class="math inline">\(n+1\)</span>
-个数均为 <span class="math inline">\(0\)</span>。</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">gauss</span><span class="hljs-params">()</span> </span>{<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) {<br>        <span class="hljs-type">int</span> now=i;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">+1</span>;j&lt;=n;j++) {<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">fabs</span>(g[j][i])&gt;<span class="hljs-built_in">fabs</span>(g[now][i])) now=j;<br>        } <span class="hljs-built_in">swap</span>(g[now],g[i]);<br>        <span class="hljs-keyword">if</span>(g[i][i]==<span class="hljs-number">0</span>) {<br>            <span class="hljs-built_in">puts</span>(<span class="hljs-string">"No Solution"</span>);<br>            <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);<br>        }<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">+1</span>;j&lt;=n<span class="hljs-number">+1</span>;j++) g[i][j]/=g[i][i];<br>        g[i][i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">+1</span>;j&lt;=n;j++) {<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=i<span class="hljs-number">+1</span>;k&lt;=n<span class="hljs-number">+1</span>;k++) {<br>                g[j][k]-=g[j][i]*g[i][k];<br>            }g[j][i]=<span class="hljs-number">0</span>;<br>        }<br>    }<br>    <span class="hljs-comment">//回带操作</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n;i&gt;=<span class="hljs-number">1</span>;i--) {<br>        ans[i]=g[i][n<span class="hljs-number">+1</span>];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-number">1</span>;j--) {<br>            g[j][n<span class="hljs-number">+1</span>]-=ans[i]*g[j][i];<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
-<h2><span id="%E6%B3%952%E9%AB%98%E6%96%AF-%E7%BA%A6%E6%97%A6%E6%B6%88%E5%85%83">法2：高斯-约旦消元</span></h2>
-<p>初始形式：</p>
-<p><span class="math display">\[
-\begin{cases}
-x_{1,1} \quad x_{1,2} \quad \dots\quad x_{1,n} \ |\  x_{1,n+1}\\
-x_{2,1} \quad x_{2,2} \quad \dots\quad x_{2,n} \ |\  x_{2,n+1}\\
-\dots \\
-x_{n,1} \quad x_{n,2} \quad \dots\quad x_{n,n} \ |\  x_{n,n+1}\\
-\end{cases}
-\]</span></p>
-<p>结束形式： <span class="math display">\[
-\begin{cases}
-1\ \  \quad 0  \quad \dots\quad 0 \ \ |\  x_{1,n+1}^{'}\\
-0 \ \ \quad 1 \quad \dots\quad 0\  \ |\  x_{2,n+1}^{'}\\
-\dots \\
-0 \ \   \quad 0   \quad \dots\quad 1 \  \ |\  x_{n,n+1}^{'}\\
-\end{cases}
-\]</span></p>
-<p>即化为对角线形式</p>
-<p>复杂度：<span class="math inline">\(O(n^3)\)</span></p>
-<p>缺点：只能判断是否有唯一解，无法判断究竟是无解还是无数解。</p>
+		<html><head></head><body><p>呵呵，我还真没过T1。</p>
+<h2><span id="day-0">Day 0</span></h2>
+<p>NOIP前一天只能说是爽玩，晚上也是睡的很<del>早</del>？</p>
+<h2><span id="day-1">Day 1</span></h2>
+<p>md真的很困。<br>
+看到T1感觉很简单，就是每块考虑分开处理，可真的有这么简单吗，换了N种方法，2h后还没切。<br>
+去看T2，也是道神秘题，花了接近1h打了45pts暴力。<br>
+T3写小说懒得喷，T4可以写线段树，太长了先不写。<br>
+顽固的我继续写T1，可惜还是没过最后一个大样例。<br>
+天塌了，开摆。</p>
+<p>事后我们送走了两位高二的学长，这就是OI的残酷吗，唉。<br>
+自己也差点AFO了qwq。</p>
+<p>最后分数：55+45+0+0=100（T1 55pts实属意外之喜。</p>
 </body></html>
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>BHX<br>
-        <strong>本文链接：</strong><a href="https://ma-siwei.github.io/chitose.github.io/2025/02/27/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83/" title="https:&#x2F;&#x2F;ma-siwei.github.io&#x2F;chitose.github.io&#x2F;2025&#x2F;02&#x2F;27&#x2F;高斯消元&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ma-siwei.github.io&#x2F;chitose.github.io&#x2F;2025&#x2F;02&#x2F;27&#x2F;高斯消元&#x2F;</a><br>
+        <strong>本文链接：</strong><a href="https://ma-siwei.github.io/chitose.github.io/2024/11/30/NOIP%E6%B8%B8%E8%AE%B0/" title="https:&#x2F;&#x2F;ma-siwei.github.io&#x2F;chitose.github.io&#x2F;2024&#x2F;11&#x2F;30&#x2F;NOIP游记&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ma-siwei.github.io&#x2F;chitose.github.io&#x2F;2024&#x2F;11&#x2F;30&#x2F;NOIP游记&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -412,20 +374,26 @@ x_{n,1} \quad x_{n,2} \quad \dots\quad x_{n,n} \ |\  x_{n,n+1}\\
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			      
+			  
 			<!-- 先找到与当前文字相同的目录 -->
-			   
+			      
 			<!-- 在找到当前文章所在的 index -->
-			          
+			    
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/chitose.github.io/2024/10/28/2024-CSP-S%E6%B8%B8%E8%AE%B0/"> 2024 CSP-S游记</a>
+			</div>
+			              
 		</nav>
 	</div>
 	
 	<div class="kira-post-meta kira-rainbow">
 		
-			<a class="kirafont icon-container-fill -link" href="/chitose.github.io/categories/OI/">OI</a>
+			<a class="kirafont icon-container-fill -link" href="/chitose.github.io/categories/%E6%B8%B8%E8%AE%B0/">游记</a>
 		
 		
-			<a class="kirafont icon-tag-fill -none-link" href="/chitose.github.io/tags/NOIP/" rel="tag">NOIP</a> <a class="kirafont icon-tag-fill -none-link" href="/chitose.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag">线性代数</a>
+			<a class="kirafont icon-tag-fill -none-link" href="/chitose.github.io/tags/NOIP/" rel="tag">NOIP</a>
 		
 	</div>
 	
